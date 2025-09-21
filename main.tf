@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 resource "aws_instance" "flask_server" {
-  ami           = "ami-0e86e20dae9224db8"  # Ubuntu 24.04 LTS in us-east-1 (check latest AMI via AWS Console)
+  ami           = "ami-0e86e20dae9224db8"  # Ubuntu 24.04 LTS in us-east-1 
   instance_type = "t2.micro"  
   key_name      = "my-ec2-key"  
 
@@ -15,7 +15,7 @@ resource "aws_instance" "flask_server" {
     apt install -y docker.io git
     systemctl start docker
     systemctl enable docker
-    git clone https://github.com/LuciusScipio/flask-docker-ec2.git /app  
+    git clone https://github.com/LuciusScipio/Project-2.git /app  
     cd /app
     docker build -t flask-app .
     docker run -d -p 80:5000 flask-app
@@ -41,7 +41,7 @@ resource "aws_security_group" "web_sg" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["197.211.59.79/32"]  
+    cidr_blocks = ["0.0.0.0/0"]  
   }
 
   egress {
