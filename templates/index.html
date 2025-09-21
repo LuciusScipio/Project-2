@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flask App</title>
+<!-- Link to the external stylesheet -->
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="main-container">
+<h1 class="page-title">Simple Note Taker</h1>
+
+    <!-- Flash messages section -->
+    <div class="message-container">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="message-box message-{{ category }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+
+    <!-- Form for adding a new note -->
+    <form action="/" method="post" class="note-form">
+        <input type="text" name="note" placeholder="Enter a new note..."
+               class="note-input">
+        <button type="submit" class="submit-button">
+            Add Note
+        </button>
+    </form>
+
+    <!-- Display section for existing notes -->
+    <div class="notes-section">
+        {% if notes %}
+            <h2 class="notes-heading">Your Notes</h2>
+            <ul class="note-list">
+                {% for note in notes %}
+                    <li class="note-item">
+                        <p class="note-text">{{ note }}</p>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p class="empty-message">No notes yet. Add one above!</p>
+        {% endif %}
+    </div>
+</div>
+
+</body>
+</html>
