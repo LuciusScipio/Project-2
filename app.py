@@ -1,6 +1,8 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 
 app = Flask(__name__)
+# Set a secret key for flash messages to work
+app.config['SECRET_KEY'] = 'a_very_secret_key_that_you_should_change'
 
 # A simple list to act as our in-memory database for notes
 
