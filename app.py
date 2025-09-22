@@ -5,7 +5,6 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = 'a_very_secret_key_that_you_should_change'
 
 # A simple list to act as our in-memory database for notes
-
 notes = []
 
 @app.route('/', methods=['GET', 'POST'])
